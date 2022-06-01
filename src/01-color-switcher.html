@@ -5,12 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Color switcher</title>
     <link rel="stylesheet" href="css/common.css" />
+    <style>
+      .container {
+        height: 80vh;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+      }
+
+      button {
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 25px;
+      }
+
+      button[data-start]{
+        margin-right: 10px;
+      }    
+    </style>
+
   </head>
   <body>
     <p><a href="index.html">Go back</a></p>
 
-    <button type="button" data-start>Start</button>
-    <button type="button" data-stop>Stop</button>
+    <div class="container">
+      <button type="button" data-start>Start</button>
+      <button type="button" disabled data-stop>Stop</button>
+    </div>
 
     <script src="js/01-color-switcher.js"></script>
   </body>
