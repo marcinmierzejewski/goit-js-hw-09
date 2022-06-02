@@ -2,6 +2,7 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
 let selectedUniksDates = 0;
+let timerId = null;
 
 const options = {
   enableTime: true,
