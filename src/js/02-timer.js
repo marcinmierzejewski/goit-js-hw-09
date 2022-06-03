@@ -13,9 +13,7 @@ const options = {
     startBtn.setAttribute('disabled', '');
     console.log(selectedDates[0]);
     selectedUniksDates = selectedDates[0].getTime();
-    // console.log(selectedUniksDates);
     const actualUniksDates = options.defaultDate.getTime();
-    // console.log(actualUniksDates);
     if (actualUniksDates >= selectedUniksDates) {
       window.alert('Please choose a date in the future');
     } else {
@@ -37,7 +35,7 @@ startBtn.addEventListener('click', countDown);
 flatpickr(dataTimePicker, options);
 
 function convertMs(ms) {
-  console.log('Countdown started');
+  console.log('Countdown START!');
   // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
@@ -57,6 +55,7 @@ function convertMs(ms) {
 }
 
 function countDown() {
+  startBtn.setAttribute('disabled', '');
   timerId = setInterval(() => {
     updateDate(convertMs(selectedUniksDates - new Date().getTime()));
   }, 1000);
@@ -69,12 +68,13 @@ function updateDate(numb) {
   addLeadingZero(dataDays, numb.days, 2);
 
   if (
-    numb.seconds === 0 &&
-    numb.minutes === 0 &&
-    numb.hours === 0 &&
-    numb.days === 0
+    numb.seconds <= 0 &&
+    numb.minutes <= 0 &&
+    numb.hours <= 0 &&
+    numb.days <= 0
   ) {
     clearInterval(timerId);
+    console.log("Countdown STOP!");    
   }
 }
 
