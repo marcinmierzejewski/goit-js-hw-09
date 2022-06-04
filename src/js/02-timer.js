@@ -1,6 +1,8 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 let selectedUniksDates = 0;
 let timerId = null;
 
@@ -15,9 +17,11 @@ const options = {
     selectedUniksDates = selectedDates[0].getTime();
     const actualUniksDates = options.defaultDate.getTime();
     if (actualUniksDates >= selectedUniksDates) {
-      window.alert('Please choose a date in the future');
+      // window.alert('Please choose a date in the future');
+      Notify.failure('Please choose a date in the future');
     } else {
-      console.log('Start button unlock');
+      // console.log('Start button unlock');
+      Notify.success('Start button unlock');
       startBtn.removeAttribute('disabled');
     }
   },
@@ -35,7 +39,6 @@ startBtn.addEventListener('click', countDown);
 flatpickr(dataTimePicker, options);
 
 function convertMs(ms) {
-  console.log('Countdown START!');
   // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
@@ -56,6 +59,8 @@ function convertMs(ms) {
 
 function countDown() {
   startBtn.setAttribute('disabled', '');
+  // console.log('Countdown START!');
+  Notify.info('Countdown START!');
   timerId = setInterval(() => {
     updateDate(convertMs(selectedUniksDates - new Date().getTime()));
   }, 1000);
@@ -74,7 +79,8 @@ function updateDate(numb) {
     numb.days <= 0
   ) {
     clearInterval(timerId);
-    console.log("Countdown STOP!");    
+    // console.log("Countdown STOP!");
+    Notify.info("Countdown STOP!");    
   }
 }
 
