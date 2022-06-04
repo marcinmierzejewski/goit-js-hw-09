@@ -2,7 +2,7 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-// import 'notiflix/dist/notiflix-3.2.5.min.css';
+import 'notiflix/dist/notiflix-3.2.5.min.css';
 
 const notifyOptions = {
   opacity: 0.9,
@@ -28,7 +28,7 @@ const options = {
       );
     } else {
       // console.log('Start button unlock');
-      Notify.success('Start button unlock',
+      Notify.success('START button unlock',
         notifyOptions
       );
       startBtn.removeAttribute('disabled');
