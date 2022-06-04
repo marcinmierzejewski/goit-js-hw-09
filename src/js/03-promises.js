@@ -1,4 +1,9 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+// import 'notiflix/dist/notiflix-3.2.5.min.css';
+
+const notifyOptions = {
+  opacity: 0.9,
+};
 
 const firstDelayField = document.querySelector("input[name='delay']");
 const delayStepField = document.querySelector("input[name='step']");
@@ -13,12 +18,17 @@ function promisesGenerator(e) {
   for (let position = 1; position <= amountField.value; position++) {
     createPromise(position, delay)
       .then(({ position, delay }) => {
-        console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-        Notify.success(`Fulfilled promise ${position} in ${delay}ms`);
+        // console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        Notify.success(
+          `Fulfilled promise ${position} in ${delay}ms`,
+          notifyOptions
+        );
       })
       .catch(({ position, delay }) => {
-        Notify.failure(`Rejected promise ${position} in ${delay}ms`);
-        console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        // console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        Notify.failure(`Rejected promise ${position} in ${delay}ms`, 
+          notifyOptions
+        );
       });
     delay += Number(delayStepField.value);
   }
